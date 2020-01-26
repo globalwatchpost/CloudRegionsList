@@ -42,3 +42,5 @@ No, we want a plugin. Generator plugins provide content for templates. Exactly w
 
 cd site_generation
 vi pelicanconf.py
+
+pelican content now invokes our plugin
