@@ -77,7 +77,7 @@ def _getAwsRegions(logger):
 
     regionList.sort()
     
-    #logger.debug("Full region list ({0} entries): {1}".format(len(regionList), pprint.pformat(regionList)))
+    logger.debug("Full region list ({0} entries):\n{1}".format(len(regionList), pprint.pformat(regionList)))
 
     return regionList
 
