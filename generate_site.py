@@ -29,6 +29,9 @@ def _getCloudLocations(logger):
 
 
 def _getAwsLocations(logger):
+    awsRegions = _getAwsRegions(logger)
+
+def _getAwsRegions(logger):
     awsRegion = _getEc2Region(logger)
     try:
         awsSsmClient = boto3.client( 'ssm', region_name=awsRegion )
@@ -45,10 +48,10 @@ def _getAwsLocations(logger):
 
         while moreResults is True:
             if queryToken is None:
-                logger.debug("Getting params with no token")
+                #logger.debug("Getting params with no token")
                 ssmResults = awsSsmClient.get_parameters_by_path( Path=regionQueryPath )
             else:
-                logger.debug( "Getting params with token {0}".format(queryToken) )
+                #logger.debug( "Getting params with token {0}".format(queryToken) )
                 ssmResults = awsSsmClient.get_parameters_by_path( Path=regionQueryPath, NextToken=queryToken )
 
             resultParams = ssmResults['Parameters']
@@ -63,9 +66,9 @@ def _getAwsLocations(logger):
                 moreResults = False
                 queryToken = None
 
-            logger.debug( "Region list now: {0}".format(pprint.pformat(regionList)))
-            logger.debug( "More results: {0}".format(moreResults))
-            logger.debug( "Token: {0}".format(queryToken) )
+            #logger.debug( "Region list now: {0}".format(pprint.pformat(regionList)))
+            #logger.debug( "More results: {0}".format(moreResults))
+            #logger.debug( "Token: {0}".format(queryToken) )
 
 
     except botocore.exceptions.ClientError as e:
@@ -74,22 +77,20 @@ def _getAwsLocations(logger):
 
     regionList.sort()
     
-    logger.info("Full region list ({0} entries): {1}".format(len(regionList), pprint.pformat(regionList)))
+    #logger.debug("Full region list ({0} entries): {1}".format(len(regionList), pprint.pformat(regionList)))
+
+    return regionList
 
 
 def _getEc2Region(logger):
     requestResult = requests.get( 'http://169.254.169.254/latest/dynamic/instance-identity/document' )
-    logger.debug( "Back from requests.get" )
+    #logger.debug( "Back from requests.get" )
     jsonDocument = requestResult.json()
     awsRegion = jsonDocument['region']
-    logger.info( "Found AWS region {0}".format(awsRegion) )
+    logger.info( "Script running in AWS region {0}".format(awsRegion) )
 
     return awsRegion
  
-    
-     
-     
-
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)

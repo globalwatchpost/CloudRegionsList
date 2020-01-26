@@ -1,0 +1,40 @@
+{
+    "aws": {
+        "ap-east-1": {
+            "continent"     : "Asia",
+            "geo_region"    : "Asia-East",
+            "iso_3166-1"    : [ "CN", "HK" ],
+            "iso_3166-2"    : [ "CN-HK" ],
+            "city"          : "Hong Kong",
+            "notes"         : null
+        },
+
+        "ap-northeast-1": {
+            "continent"     : "Asia",
+            "geo_region"    : "Asia-Northeast",
+            "iso_3166-1"    : [ "JP" ],
+            "iso_3166-2"    : null,
+            "city"          : "Tokyo",
+            "notes"         : null
+        },
+
+        "ap-northeast-2": {
+            "continent"     : "Asia",
+            "geo_region"    : "Asia-Northeast",
+            "iso_3166-1"    : "KR",
+            "iso_3166-2"    : null,
+            "city"          : "Seoul",
+            "notes"         : null
+        },
+
+        "ap-northeast-3": {
+            "continent"     : "Asia",
+            "geo_region"    : "Asia-Northeast",
+            "iso_3166-1"    : "JP",
+            "iso_3166-2"    : "",
+            "city"          : "Osaka",
+            "notes"         : "Local region only"
+        }
+    }
+
+}
