@@ -44,3 +44,27 @@ cd site_generation
 vi pelicanconf.py
 
 pelican content now invokes our plugin
+
+https://mister-gold.pro/posts/en/pelican-custom-page-using-jinja2/
+
+Trying to get something that will take jinja variables, then circle back to populating them
+
+
+Oi.  Templates go under themes, which are in :~/.local/lib/python3.6/site-packages/pelican/themes/notmyidea/templates
+
+How the fuck is that a good idea?  Ugh.
+
+
+--- 2020-02-08 ---
+
+* Going to use generator to create one hardcode template variable that is inserted into a page
+* cd git/CloudRegionsList/site_generation
+* make html will build site
+** You can see how it invokes both methods of our generator
+* Believe we need to populate our hardcoded template variable in generate_context
+* Our plugin didn't get invoked by magic. We modified pelicanconf.py to add 'cloud_region_list_aws' into PLUGINS= [ ] 
+
+* Alright, now we're turning the corner
+* AWsRegionsGenerator now inherits from pelican.generators.PagesGenerator
+* Once we do that, inside generate context we can access self.context, and that has a lot of goodness
+* Let's put something in self.context, then try to access it from our aws.md page in a template
