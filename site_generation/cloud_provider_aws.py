@@ -98,7 +98,7 @@ class CloudProviderAws:
 
 
     def getSortingOrderings(self):
-        print( "Inside getSortingOrderings" )
+        #print( "Inside getSortingOrderings" )
 
         # Populate data if needed
         if self._sortingOrderings is not None:
@@ -134,7 +134,7 @@ class CloudProviderAws:
 
         
 
-        print( "Sorting key arrays:\n{0}".format(pprint.pformat(sortingKeyArrays, indent=4)))
+        #print( "Sorting key arrays:\n{0}".format(pprint.pformat(sortingKeyArrays, indent=4)))
 
         self._sortingOrderings = {}
 
@@ -158,7 +158,7 @@ class CloudProviderAws:
 
             self._sortingOrderings[ currField ][ 'desc' ].reverse()
 
-        print( "Sorting orderings:\n{0}".format(json.dumps(self._sortingOrderings, indent=4, sort_keys=True)))
+        #print( "Sorting orderings:\n{0}".format(json.dumps(self._sortingOrderings, indent=4, sort_keys=True)))
 
         return self._sortingOrderings
 

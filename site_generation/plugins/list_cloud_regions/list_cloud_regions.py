@@ -1,4 +1,3 @@
-#ws
 #!/usr/bin/python3
 
 import logging
@@ -95,6 +94,8 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
         sortFields = []
 
         sortingLists = {}
+        self._finalizedSortedLists = { 'AWS': {} }
+
         for currProviderId in self._providerObjects:
             providerObject = self._providerObjects[ currProviderId ]
             sortingLists[ currProviderId ] = providerObject.getSortingOrderings()
@@ -102,8 +103,10 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
                 if currSortField not in sortFields:
                     sortFields.append( currSortField )
 
-            
+
         for currSortField in sortFields:
+            self._finalizedSortedLists[ 'AWS' ][ currSortField ] = { 'asc': [], 'desc': [] }
+
             for sortDirection in ( 'asc', 'desc' ):
                 providerLists = {}
                 providerListIndexes = {}
@@ -113,31 +116,50 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
 
                 print( "Sort field: {0}, sort direction: {1}".format(currSortField, sortDirection) )
 
-                currCandidateEntries = []
+                doneWithAllLists = False
 
-                for currProviderId in self._providerObjects:
-                    if providerListIndexes[ currProviderId ] < len(  providerLists[ currProviderId ] ):
-                        currCandidateEntries.append( 
-                            providerLists[ currProviderId ][ providerListIndexes[ currProviderId ] ][ 'sort_key' ] )
+                while doneWithAllLists is False:
 
-                # Find min or max value of the candidates based on sort order
-                print( "\tCandidate values:\n{0}".format(pprint.pformat(currCandidateEntries, indent=4)) )
+                    currCandidateEntries = []
 
-                if sortDirection == 'asc':
-                    nextSortKey = min( currCandidateEntries )
-                else:
-                    nextSortKey = max( currCandidateEntries )
+                    for currProviderId in self._providerObjects:
+                        if providerListIndexes[ currProviderId ] < len(  providerLists[ currProviderId ] ):
+                            currCandidateEntries.append( 
+                                providerLists[ currProviderId ][ providerListIndexes[ currProviderId ] ][ 'sort_key' ] )
 
-                print( "Next sort key for combined list: {0}".format( nextSortKey ) )
+                    # Find min or max value of the candidates based on sort order
+                    #print( "\tCandidate values:\n{0}".format(pprint.pformat(currCandidateEntries, indent=4)) )
 
+                    if sortDirection == 'asc':
+                        nextSortKey = min( currCandidateEntries )
+                    else:
+                        nextSortKey = max( currCandidateEntries )
 
+                    print( "Next sort key for combined list: {0}".format( nextSortKey ) )
 
+                    # Find it in the candidate list
+                    print( "before find in candidate list" )
+                    for currProviderId in self._providerObjects:
+                        if providerListIndexes[ currProviderId ] < len( providerLists[ currProviderId ] ):
+                            potentialMatch = providerLists[ currProviderId ][ providerListIndexes[ currProviderId ] ]
+                            print( "Potential match {0}, looking for one with sort key {1}".format(
+                                pprint.pformat(potentialMatch, indent=4), nextSortKey))
 
-                
+                            if potentialMatch['sort_key'] == nextSortKey:
+                                self._finalizedSortedLists[ currProviderId ][ currSortField ][ sortDirection ].append(
+                                    potentialMatch )
+                                providerListIndexes[ currProviderId ] += 1
 
+                    # See if we're done
+                    doneWithAllLists = True
+                    for currProviderId in self._providerObjects:
+                        if providerListIndexes[ currProviderId ] < len(  providerLists[ currProviderId ] ):
+                            doneWithAllLists = False
+                            break
 
+        print( "Done building finalized lists" )
+        print( "Finalized lists:\n{0}".format(json.dumps(self._finalizedSortedLists, indent=4, sort_keys=True) ) )
 
-        
 
 def formatDate(datetimeField):
     return datetimeField.strftime("%Y-%m-%d %H:%M:%S")  
