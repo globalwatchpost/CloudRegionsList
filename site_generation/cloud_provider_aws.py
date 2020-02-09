@@ -11,12 +11,30 @@ import sys
 
 class CloudProviderAws:
 
-    def __init__(self, dateFormatFunction):
+    def __init__(self, regionGeoInfo, dateFormatFunction):
         self._ec2Region             = self._getEc2Region()
         self._dateFormatFunction    = dateFormatFunction
+        self._regionGeoInfo         = regionGeoInfo
+        self._mostRecentUpdate      = None
+        self._regions               = None
 
 
-    def getRegions(self, regionInfo):
+    def getDataSources(self):
+        if self._mostRecentUpdate is None:
+            self.getRegions()
+
+        return [
+            {
+                'description': '<a href="https://aws.amazon.com/blogs/aws/new-query-for-aws-regions-endpoints-and-more-using-aws-systems-manager-parameter-store/">AWS Systems Manager Parameter Store</a>',
+                'updated_timestamp': self._dateFormatFunction( self._mostRecentUpdate )
+            },
+        ]
+
+
+    def getRegions(self):
+        if self._regions is not None:
+            return self._regions
+            
         try:
             awsSsmClient = boto3.client( 'ssm', region_name=self._ec2Region )
         except e:
@@ -29,7 +47,6 @@ class CloudProviderAws:
             moreResults = True
             queryToken = None
             regionList = []
-            mostRecentUpdate = None
 
             while moreResults is True:
                 if queryToken is None:
@@ -44,11 +61,11 @@ class CloudProviderAws:
                 for currParam in resultParams:
                     regionList.append( currParam['Value'] )
                     #print( "Param data for {0}:\n{1}".format(currParam['Value'], pprint.pformat(currParam, indent=4)))
-                    if mostRecentUpdate is None:
-                        mostRecentUpdate = currParam['LastModifiedDate']
+                    if self._mostRecentUpdate is None:
+                        self._mostRecentUpdate = currParam['LastModifiedDate']
                     else:
-                        if currParam['LastModifiedDate'] > mostRecentUpdate:
-                            mostRecentUpdate = currParam['LastModifiedDate']
+                        if currParam['LastModifiedDate'] > self._mostRecentUpdate:
+                            self._mostRecentUpdate = currParam['LastModifiedDate']
 
                 if 'NextToken' in ssmResults and len(ssmResults['NextToken']) > 0:
                     moreResults = True
@@ -64,18 +81,12 @@ class CloudProviderAws:
  
         regionList.sort()
 
-        retVal = {
-            'data_source': {
-                'description': '<a href="https://aws.amazon.com/blogs/aws/new-query-for-aws-regions-endpoints-and-more-using-aws-systems-manager-parameter-store/">AWS Systems Manager Parameter Store</a>',
-                'updated_timestamp': self._dateFormatFunction( mostRecentUpdate )
-            },
-            'regions': { }
-        }
+        self._regions = {}
 
         for currRegionName in regionList:
-            retVal['regions'][ currRegionName] = regionInfo[currRegionName]
+            self._regions[ currRegionName ] = self._regionGeoInfo[currRegionName]
 
-        return retVal
+        return self._regions
 
 
     def _getEc2Region(self):

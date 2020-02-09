@@ -22,54 +22,70 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
         #print( "Region info:\n{0}".format(json.dumps(regionInfo, indent=4, sort_keys=True)))
 
         self.context['cloud_providers'] = {
-            'generation_timestamp': self.formatDate( datetime.datetime.utcnow() ),
-            'country_codes': {}
+            'generation_timestamp': formatDate( datetime.datetime.utcnow() ),
+            'data_sources': [],
+            'regions_by_provider': {}
         }
 
 
-        self._getAwsRegions(regionInfo['aws'])
+        self._getAwsRegions(regionInfo['AWS'])
         # Azure
         # GCloud
 
-        #self._doCountryLookups()
+        self._doCountryLookups( regionInfo )
 
         print( "leaving generate_context" )
 
 
     def _getAwsRegions(self, regionInfo):
-        awsRegions = cloud_provider_aws.CloudProviderAws(self.formatDate)
+        awsProvider = cloud_provider_aws.CloudProviderAws(regionInfo, formatDate)
 
-        self.context['cloud_providers']['aws'] = awsRegions.getRegions(regionInfo)
-
-
-    def _doCountryLookups(self):
-        countryDisplayNames = []
-        countryCodes = regionInfo['aws'][currRegionName]['iso_3166-1']
-        for countryCode in countryCodes:
-            if countryCode in countryLookups:
-                countryLookup = countryLookups[countryCode]
-            else:
-                countryLookup = pycountry.countries.get(alpha_2=countryCode)
-                countryLookups[countryCode] = countryLookup
-
-            if countryLookup is not None:
-                #print( "Country code {0} converted to {1}".format(countryCode, countryLookup.name))
-
-                # If name has comma in it, such as "Korea, Republic of", strip everything to right of comma
-                displayName = countryLookup.name
-                if ',' in displayName:
-                    displayName = displayName[:displayName.find(',')]
-                countryDisplayNames.append(displayName)
-                #print( "Full deets:\n{0}".format(pprint.pformat(countryLookup)))
-            else:
-                print( "Did not find entry for country code {0}".format(countryCode))
-
-        countryDisplayNames.sort()
+        self.context['cloud_providers']['data_sources'].extend( awsProvider.getDataSources() )
+        self.context['cloud_providers']['regions_by_provider']['AWS'] = awsProvider.getRegions()
 
 
-    def formatDate(self, datetimeField):
-        return datetimeField.strftime("%Y-%m-%d %H:%M:%S")  
+    def _doCountryLookups(self, regionGeoInfo ):
+        masterListDisplayNames = {}
 
+        for currProvider in regionGeoInfo:
+            for currRegionName in regionGeoInfo[ currProvider ]:
+                regionCountryCodes = regionGeoInfo[currProvider][currRegionName]['iso_3166-1']
+
+                self.context['cloud_providers']['regions_by_provider'][ currProvider ][ currRegionName ]\
+                    [ 'display_countries' ] = []
+
+                regionDisplayCountries = self.context['cloud_providers']['regions_by_provider'][ currProvider ]\
+                    [ currRegionName ][ 'display_countries' ]
+
+                for regionCountryCode in regionCountryCodes:
+                    displayName = None 
+                    if regionCountryCode in masterListDisplayNames:
+                        displayName = masterListDisplayNames[ regionCountryCode ] 
+                    else:
+                        countryLookup = pycountry.countries.get(alpha_2=regionCountryCode)
+
+                        if countryLookup is not None:
+                            #print( "Country code {0} converted to {1}".format(regionCountryCode, countryLookup.name))
+
+                            # If name has comma in it, such as "Korea, Republic of", strip everything to right of comma
+                            displayName = countryLookup.name
+                            if ',' in displayName:
+                                displayName = displayName[:displayName.find(',')]
+                            #print( "Full deets:\n{0}".format(pprint.pformat(countryLookup)))
+                        else:
+                            print( "Did not find entry for country code {0}".format(regionCountryCode))
+
+                    # Store human-readable, sorted list of display country names for easy lookup
+                    if displayName is not None:
+                        masterListDisplayNames[ regionCountryCode ] = displayName
+                        regionDisplayCountries.append( displayName )
+
+                # sort the display list of countries for this region 
+                regionDisplayCountries.sort()
+
+
+def formatDate(datetimeField):
+    return datetimeField.strftime("%Y-%m-%d %H:%M:%S")  
 
 
 def getListCloudRegionsGenerator( pelicanHandle ):

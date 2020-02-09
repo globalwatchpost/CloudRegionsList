@@ -1,5 +1,5 @@
 {
-    "aws": {
+    "AWS": {
         "ap-east-1": {
             "city": "Hong Kong",
             "continent": "Asia",
