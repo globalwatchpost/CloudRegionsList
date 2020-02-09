@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Global Watchpost LLC'
-SITENAME = 'Cloud Regions List'
+SITENAME = 'List Cloud Regions'
 SITEURL = ''
 
 PATH = 'content'
@@ -34,5 +34,5 @@ DEFAULT_PAGINATION = False
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-PLUGINS = [ 'cloud_region_list_aws', ]
+PLUGINS = [ 'list_cloud_regions', ]
 PLUGIN_PATHS = [ 'plugins', ]
