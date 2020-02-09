@@ -27,6 +27,9 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
             'regions_by_provider': {}
         }
 
+        self._providerObjects = {
+            'AWS': cloud_provider_aws.CloudProviderAws(regionInfo['AWS'], formatDate),
+        }
 
         self._getAwsRegions(regionInfo['AWS'])
         # Azure
@@ -34,11 +37,13 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
 
         self._doCountryLookups( regionInfo )
 
+        self._createSortingLists()
+
         print( "leaving generate_context" )
 
 
     def _getAwsRegions(self, regionInfo):
-        awsProvider = cloud_provider_aws.CloudProviderAws(regionInfo, formatDate)
+        awsProvider = self._providerObjects['AWS']
 
         self.context['cloud_providers']['data_sources'].extend( awsProvider.getDataSources() )
         self.context['cloud_providers']['regions_by_provider']['AWS'] = awsProvider.getRegions()
@@ -83,6 +88,56 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
                 # sort the display list of countries for this region 
                 regionDisplayCountries.sort()
 
+
+    def _createSortingLists(self):
+        print( "Starting sorting lists" )
+
+        sortFields = []
+
+        sortingLists = {}
+        for currProviderId in self._providerObjects:
+            providerObject = self._providerObjects[ currProviderId ]
+            sortingLists[ currProviderId ] = providerObject.getSortingOrderings()
+            for currSortField in sortingLists[ currProviderId ]:
+                if currSortField not in sortFields:
+                    sortFields.append( currSortField )
+
+            
+        for currSortField in sortFields:
+            for sortDirection in ( 'asc', 'desc' ):
+                providerLists = {}
+                providerListIndexes = {}
+                for currProviderId in self._providerObjects:
+                    providerLists[ currProviderId ] = sortingLists[ currProviderId ][ currSortField ][ sortDirection ] 
+                    providerListIndexes[ currProviderId ] = 0
+
+                print( "Sort field: {0}, sort direction: {1}".format(currSortField, sortDirection) )
+
+                currCandidateEntries = []
+
+                for currProviderId in self._providerObjects:
+                    if providerListIndexes[ currProviderId ] < len(  providerLists[ currProviderId ] ):
+                        currCandidateEntries.append( 
+                            providerLists[ currProviderId ][ providerListIndexes[ currProviderId ] ][ 'sort_key' ] )
+
+                # Find min or max value of the candidates based on sort order
+                print( "\tCandidate values:\n{0}".format(pprint.pformat(currCandidateEntries, indent=4)) )
+
+                if sortDirection == 'asc':
+                    nextSortKey = min( currCandidateEntries )
+                else:
+                    nextSortKey = max( currCandidateEntries )
+
+                print( "Next sort key for combined list: {0}".format( nextSortKey ) )
+
+
+
+
+                
+
+
+
+        
 
 def formatDate(datetimeField):
     return datetimeField.strftime("%Y-%m-%d %H:%M:%S")  

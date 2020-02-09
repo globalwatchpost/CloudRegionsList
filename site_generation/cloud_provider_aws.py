@@ -17,9 +17,11 @@ class CloudProviderAws:
         self._regionGeoInfo         = regionGeoInfo
         self._mostRecentUpdate      = None
         self._regions               = None
+        self._sortingOrderings      = None
 
 
     def getDataSources(self):
+        logging.info( "Inside getDataSources" )
         if self._mostRecentUpdate is None:
             self.getRegions()
 
@@ -32,6 +34,7 @@ class CloudProviderAws:
 
 
     def getRegions(self):
+        logging.info( "Inside getRegions" )
         if self._regions is not None:
             return self._regions
             
@@ -84,9 +87,80 @@ class CloudProviderAws:
         self._regions = {}
 
         for currRegionName in regionList:
+            #logging.info("working {0}".format(currRegionName))
+            #print("region Geo info:\n{0}".format(self._regionGeoInfo))
             self._regions[ currRegionName ] = self._regionGeoInfo[currRegionName]
 
+
+        logging.info( "Leaving getRegions" )
+
         return self._regions
+
+
+    def getSortingOrderings(self):
+        print( "Inside getSortingOrderings" )
+
+        # Populate data if needed
+        if self._sortingOrderings is not None:
+            return self._sortingOrderings
+
+        if self._regions is None:
+            self.getRegions()
+
+        sortingKeyArrays = {}
+        for currRegionId in self._regions:
+            for sortKeyField in ( 'cloud_region', 'geo_region', 'continent', 'country', 'city' ):
+                currRegionDetails = self._regions[ currRegionId ]
+
+                if sortKeyField not in sortingKeyArrays:
+                    sortingKeyArrays[sortKeyField] = {}
+
+                currSortingKeyArray = sortingKeyArrays[sortKeyField]
+
+                if sortKeyField == 'cloud_region':
+                    sortKey = "AWS:{0}".format(currRegionId)
+                elif sortKeyField == 'geo_region':
+                    sortKey = "{0}-AWS:{1}".format(currRegionDetails['geo_region'], currRegionId)
+                elif sortKeyField == 'continent':
+                    sortKey = "{0}-AWS:{1}".format(currRegionDetails['continent'], currRegionId)
+                elif sortKeyField == 'country':
+                    sortKey = "{0}-AWS:{1}".format(','.join(currRegionDetails[ 'display_countries' ]), currRegionId)
+                elif sortKeyField == 'city':
+                    sortKey = "{0}-AWS:{1}".format(currRegionDetails[ 'city' ], currRegionId)
+                else:
+                    raise Exception("Unknown sort key field: {0}".format(sortKeyField))
+
+                currSortingKeyArray[ sortKey ] = currRegionId
+
+        
+
+        print( "Sorting key arrays:\n{0}".format(pprint.pformat(sortingKeyArrays, indent=4)))
+
+        self._sortingOrderings = {}
+
+        for currField in ('cloud_region', 'geo_region', 'continent', 'country', 'city' ):
+            for sortDirection in ( 'asc', 'desc' ):
+                if currField not in self._sortingOrderings:
+                    self._sortingOrderings[ currField ] = {
+                        'asc': [],
+                        'desc': []
+                    }
+
+                for currSortKey in sorted( sortingKeyArrays[ currField ].keys() ):
+                    self._sortingOrderings[ currField ][ sortDirection ].append( 
+                        { 
+                            'sort_key'          : currSortKey,
+                            'cloud_provider'    : 'AWS',
+                            'region_name'       : sortingKeyArrays[ currField ][ currSortKey ] 
+                        }
+                    )
+
+
+            self._sortingOrderings[ currField ][ 'desc' ].reverse()
+
+        print( "Sorting orderings:\n{0}".format(json.dumps(self._sortingOrderings, indent=4, sort_keys=True)))
+
+        return self._sortingOrderings
 
 
     def _getEc2Region(self):
