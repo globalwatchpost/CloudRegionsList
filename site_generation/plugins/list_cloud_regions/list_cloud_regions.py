@@ -8,6 +8,8 @@ import pelican
 import pycountry
 import datetime
 import cloud_provider_aws
+import itertools
+import copy
 
 
 class ListCloudRegions(pelican.generators.PagesGenerator):
@@ -21,13 +23,16 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
         #print( "Region info:\n{0}".format(json.dumps(regionInfo, indent=4, sort_keys=True)))
 
         self.context['cloud_providers'] = {
-            'generation_timestamp': formatDate( datetime.datetime.utcnow() ),
-            'data_sources': [],
-            'regions_by_provider': {}
+            'generation_timestamp'  : formatDate( datetime.datetime.utcnow() ),
+            'data_sources'          : [],
+            'regions_by_provider'   : {},
+            'sorted_display_lists'  : {}
         }
 
         self._providerObjects = {
-            'AWS': cloud_provider_aws.CloudProviderAws(regionInfo['AWS'], formatDate),
+            'AWS'           : cloud_provider_aws.CloudProviderAws(regionInfo['AWS'], formatDate),
+            #'Azure'         : None,
+            #'Google Cloud'  : None
         }
 
         self._getAwsRegions(regionInfo['AWS'])
@@ -91,74 +96,92 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
     def _createSortingLists(self):
         print( "Starting sorting lists" )
 
-        sortFields = []
+        providerCombinations = []
 
-        sortingLists = {}
-        self._finalizedSortedLists = { 'AWS': {} }
-
-        for currProviderId in self._providerObjects:
-            providerObject = self._providerObjects[ currProviderId ]
-            sortingLists[ currProviderId ] = providerObject.getSortingOrderings()
-            for currSortField in sortingLists[ currProviderId ]:
-                if currSortField not in sortFields:
-                    sortFields.append( currSortField )
+        # Create combinations for all lengths of all cloud providers
+        for currProviderCombinationLength in range( 1, len(self._providerObjects) + 1 ):
+            providerCombinations.extend( itertools.combinations(self._providerObjects, currProviderCombinationLength) )
 
 
-        for currSortField in sortFields:
-            self._finalizedSortedLists[ 'AWS' ][ currSortField ] = { 'asc': [], 'desc': [] }
+        #print( "Provider combinations:\n{0}".format(pprint.pformat(providerCombinations, indent=4)) )
 
-            for sortDirection in ( 'asc', 'desc' ):
-                providerLists = {}
-                providerListIndexes = {}
-                for currProviderId in self._providerObjects:
-                    providerLists[ currProviderId ] = sortingLists[ currProviderId ][ currSortField ][ sortDirection ] 
-                    providerListIndexes[ currProviderId ] = 0
+        for currProviderFilter in providerCombinations:
+            for currSortField in self._getSortFields():
+                for currSortDirection in ( 'asc', 'desc' ):
+                    tempWorkingList = []
 
-                print( "Sort field: {0}, sort direction: {1}".format(currSortField, sortDirection) )
+                    for currProvider in currProviderFilter:
+                        providerRegions = self._providerObjects[currProvider].getRegions()
+                        for currProviderRegionId in providerRegions:
+                            tempWorkingList.append( 
+                                { 
+                                    'sort_key'      : self._getSortKey( currSortField, currProvider, currProviderRegionId,
+                                        providerRegions[ currProviderRegionId ] ),
+                                    'provider'      : currProvider,
+                                    'region_name'   : currProviderRegionId
+                                }
+                            )
 
-                doneWithAllLists = False
+                    tempWorkingList = self._sortTempWorkingList( tempWorkingList, currSortDirection )
+                    #print( "Working list:\n{0}".format(json.dumps(tempWorkingList, indent=4, sort_keys=True)))
 
-                while doneWithAllLists is False:
 
-                    currCandidateEntries = []
+                    # Add values to master sorted list
+                    masterSortedListKey = "{0}/{1}/{2}".format(
+                        '-'.join(currProviderFilter),
+                        currSortField,
+                        currSortDirection) 
+                    self.context['cloud_providers']['sorted_display_lists'][ masterSortedListKey ] = []
 
-                    for currProviderId in self._providerObjects:
-                        if providerListIndexes[ currProviderId ] < len(  providerLists[ currProviderId ] ):
-                            currCandidateEntries.append( 
-                                providerLists[ currProviderId ][ providerListIndexes[ currProviderId ] ][ 'sort_key' ] )
+                    for currEntry in tempWorkingList:
+                        masterListEntry = copy.deepcopy( self.context['cloud_providers']['regions_by_provider' ]\
+                            [ currEntry[ 'provider'] ][ currEntry[ 'region_name' ] ] )
+                        masterListEntry[ 'cloud_provider' ] = currEntry[ 'provider' ]
+                        masterListEntry[ 'cloud_region' ] = currEntry[ 'region_name' ]
 
-                    # Find min or max value of the candidates based on sort order
-                    #print( "\tCandidate values:\n{0}".format(pprint.pformat(currCandidateEntries, indent=4)) )
+                        self.context['cloud_providers']['sorted_display_lists'][ masterSortedListKey ].append( 
+                            masterListEntry )
 
-                    if sortDirection == 'asc':
-                        nextSortKey = min( currCandidateEntries )
-                    else:
-                        nextSortKey = max( currCandidateEntries )
 
-                    print( "Next sort key for combined list: {0}".format( nextSortKey ) )
+                    print( "Master sorted list: {0}, entries:\n{1}".format(
+                        masterSortedListKey, json.dumps(
+                            self.context['cloud_providers']['sorted_display_lists'][ masterSortedListKey ],
+                            indent=4, sort_keys=True)) )
+                            
 
-                    # Find it in the candidate list
-                    print( "before find in candidate list" )
-                    for currProviderId in self._providerObjects:
-                        if providerListIndexes[ currProviderId ] < len( providerLists[ currProviderId ] ):
-                            potentialMatch = providerLists[ currProviderId ][ providerListIndexes[ currProviderId ] ]
-                            print( "Potential match {0}, looking for one with sort key {1}".format(
-                                pprint.pformat(potentialMatch, indent=4), nextSortKey))
 
-                            if potentialMatch['sort_key'] == nextSortKey:
-                                self._finalizedSortedLists[ currProviderId ][ currSortField ][ sortDirection ].append(
-                                    potentialMatch )
-                                providerListIndexes[ currProviderId ] += 1
 
-                    # See if we're done
-                    doneWithAllLists = True
-                    for currProviderId in self._providerObjects:
-                        if providerListIndexes[ currProviderId ] < len(  providerLists[ currProviderId ] ):
-                            doneWithAllLists = False
-                            break
 
-        print( "Done building finalized lists" )
-        print( "Finalized lists:\n{0}".format(json.dumps(self._finalizedSortedLists, indent=4, sort_keys=True) ) )
+    def _getSortFields(self):
+        return (
+            'cloud_region',
+            'geo_region',
+            'continent',
+            'display_countries',
+            'city'
+        )
+        
+
+    def _getSortKey( self, sortField, provider, providerRegionId, regionObject ):
+        if sortField == 'display_countries':
+            sortValue = ', '.join( regionObject[ sortField ] )
+        elif sortField == 'cloud_region':
+            sortValue = providerRegionId
+        else:
+            sortValue = regionObject[ sortField ]
+
+        return "sort_field:{0}:sort_value:{1}:provider:{2}:region:{3}".format(
+            sortField, sortValue, provider, providerRegionId) 
+
+
+    def _sortTempWorkingList( self, tempWorkingList, currSortDirection ):
+        if currSortDirection == 'desc':
+            sortReverse = True
+        else:
+            sortReverse = False
+        #print( "Sort reverse: {0}".format(sortReverse) )
+        return sorted( tempWorkingList, key = lambda i: i[ 'sort_key' ], reverse=sortReverse ) 
+
 
 
 def formatDate(datetimeField):
