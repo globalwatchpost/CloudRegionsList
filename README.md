@@ -68,3 +68,9 @@ How the fuck is that a good idea?  Ugh.
 * AWsRegionsGenerator now inherits from pelican.generators.PagesGenerator
 * Once we do that, inside generate context we can access self.context, and that has a lot of goodness
 * Let's put something in self.context, then try to access it from our aws.md page in a template
+
+# Azure CLI
+https://docs.microsoft.com/bs-cyrl-ba/cli/azure/install-azure-cli-apt?view=azure-cli-latest
+
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+

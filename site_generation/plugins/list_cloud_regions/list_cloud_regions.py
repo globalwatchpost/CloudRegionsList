@@ -7,7 +7,8 @@ import sys
 import pelican
 import pycountry
 import datetime
-import cloud_provider_aws
+import cloudprovider_aws
+import cloudprovider_azure
 import itertools
 import copy
 
@@ -30,35 +31,36 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
         }
 
         self._providerObjects = {
-            'AWS'           : cloud_provider_aws.CloudProviderAws(regionInfo['AWS'], formatDate),
-            #'Azure'         : None,
-            #'Google Cloud'  : None
+            'AWS'           : cloudprovider_aws.CloudProviderAws( regionInfo['AWS'], formatDate),
+            'Azure'         : cloudprovider_azure.CloudProviderAzure( regionInfo['Azure'], formatDate),
+            #'Google Cloud' : None
         }
 
-        self._getAwsRegions(regionInfo['AWS'])
-        # Azure
-        # GCloud
+        self._populateProviderRegionContext()
 
-        self._doCountryLookups( regionInfo )
+        self._doCountryLookups()
 
         self._createSortingLists()
 
         print( "leaving generate_context" )
 
 
-    def _getAwsRegions(self, regionInfo):
-        awsProvider = self._providerObjects['AWS']
+    def _populateProviderRegionContext(self):
+        for currProviderId in self._providerObjects:
+            logging.info("Creating region context for provider {0}".format(currProviderId) )
+            currProvider = self._providerObjects[ currProviderId ]
 
-        self.context['cloud_providers']['data_sources'].extend( awsProvider.getDataSources() )
-        self.context['cloud_providers']['regions_by_provider']['AWS'] = awsProvider.getRegions()
+            self.context['cloud_providers']['data_sources'].extend( currProvider.getDataSources() )
+            self.context['cloud_providers']['regions_by_provider'][ currProviderId ] = currProvider.getRegions()
 
 
-    def _doCountryLookups(self, regionGeoInfo ):
+    def _doCountryLookups( self ):
         masterListDisplayNames = {}
 
-        for currProvider in regionGeoInfo:
-            for currRegionName in regionGeoInfo[ currProvider ]:
-                regionCountryCodes = regionGeoInfo[currProvider][currRegionName]['iso_3166-1']
+        for currProvider in self.context['cloud_providers']['regions_by_provider']:
+            for currRegionName in self.context['cloud_providers']['regions_by_provider'][ currProvider ]:
+                regionCountryCodes = self.context['cloud_providers']['regions_by_provider']\
+                    [currProvider][currRegionName]['iso_3166-1']
 
                 self.context['cloud_providers']['regions_by_provider'][ currProvider ][ currRegionName ]\
                     [ 'display_countries' ] = []
@@ -143,13 +145,10 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
                             masterListEntry )
 
 
-                    print( "Master sorted list: {0}, entries:\n{1}".format(
-                        masterSortedListKey, json.dumps(
-                            self.context['cloud_providers']['sorted_display_lists'][ masterSortedListKey ],
-                            indent=4, sort_keys=True)) )
-                            
-
-
+                    #print( "Master sorted list: {0}, entries:\n{1}".format(
+                    #    masterSortedListKey, json.dumps(
+                    #        self.context['cloud_providers']['sorted_display_lists'][ masterSortedListKey ],
+                    #        indent=4, sort_keys=True)) )
 
 
     def _getSortFields(self):
@@ -164,14 +163,18 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
 
     def _getSortKey( self, sortField, provider, providerRegionId, regionObject ):
         if sortField == 'display_countries':
-            sortValue = ', '.join( regionObject[ sortField ] )
+            if 'display_countries' not in regionObject:
+                print( "Could not find display_countries in {0}/{1}".format(provider, providerRegionId) )
+                sortValue = "???"
+            else:
+                sortValue = ', '.join( regionObject[ sortField ] )
         elif sortField == 'cloud_region':
             sortValue = providerRegionId
         else:
             sortValue = regionObject[ sortField ]
 
         return "sort_field:{0}:sort_value:{1}:provider:{2}:region:{3}".format(
-            sortField, sortValue, provider, providerRegionId) 
+            sortField, sortValue, provider, providerRegionId).lower()
 
 
     def _sortTempWorkingList( self, tempWorkingList, currSortDirection ):

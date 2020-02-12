@@ -7,20 +7,16 @@ import json
 import pprint
 import requests
 import sys
+import cloudprovider
 
 
-class CloudProviderAws:
+class CloudProviderAws( cloudprovider.CloudProvider ):
 
-    def __init__(self, regionGeoInfo, dateFormatFunction):
-        self._ec2Region             = self._getEc2Region()
-        self._dateFormatFunction    = dateFormatFunction
-        self._regionGeoInfo         = regionGeoInfo
-        self._mostRecentUpdate      = None
-        self._regions               = None
+    def __init__( self, regionGeoInfo, dateFormatFunction ):
+        super().__init__( regionGeoInfo, dateFormatFunction )
 
 
     def getDataSources(self):
-        logging.info( "Inside getDataSources" )
         if self._mostRecentUpdate is None:
             self.getRegions()
 
@@ -33,12 +29,11 @@ class CloudProviderAws:
 
 
     def getRegions(self):
-        logging.info( "Inside getRegions" )
         if self._regions is not None:
             return self._regions
             
         try:
-            awsSsmClient = boto3.client( 'ssm', region_name=self._ec2Region )
+            awsSsmClient = boto3.client( 'ssm', region_name=self._getEc2Region() )
         except e:
             logging.critical( "Exception thrown when trying to establish SSM client connection, error: {0}".format(e) )
             sys.exit(1)

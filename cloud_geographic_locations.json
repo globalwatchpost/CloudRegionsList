@@ -183,7 +183,7 @@
             ]
         },
         "us-east-1": {
-            "city": "Ashburn",
+            "city": "Ashburn, Virginia",
             "continent": "North America",
             "geo_region": "America-North",
             "iso_3166-1": [
@@ -194,7 +194,7 @@
             ]
         },
         "us-east-2": {
-            "city": "Columbus",
+            "city": "Columbus, Ohio",
             "continent": "North America",
             "geo_region": "America-North",
             "iso_3166-1": [
@@ -205,7 +205,7 @@
             ]
         },
         "us-gov-east-1": {
-            "city": "Columbus",
+            "city": "Columbus, Ohio",
             "continent": "North America",
             "geo_region": "America-North",
             "iso_3166-1": [
@@ -216,7 +216,7 @@
             ]
         },
         "us-gov-west-1": {
-            "city": "The Dalles",
+            "city": "The Dalles, Oregon",
             "continent": "North America",
             "geo_region": "America-North",
             "iso_3166-1": [
@@ -227,7 +227,7 @@
             ]
         },
         "us-west-1": {
-            "city": "San Jose",
+            "city": "San Jose, California",
             "continent": "North America",
             "geo_region": "America-North",
             "iso_3166-1": [
@@ -238,7 +238,7 @@
             ]
         },
         "us-west-2": {
-            "city": "The Dalles",
+            "city": "The Dalles, Oregon",
             "continent": "North America",
             "geo_region": "America-North",
             "iso_3166-1": [
@@ -248,5 +248,154 @@
                 "US-OR"
             ]
         }
+    },
+
+    "Azure": {
+        "Australia Central": {
+            "city"          : "???",
+            "continent"     : "Oceania",
+            "geo_region"    : "Oceania",
+            "iso_3166-1"    : [ "AU" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "Australia Central 2": {
+            "city"          : "???",
+            "continent"     : "Oceania",
+            "geo_region"    : "Oceania",
+            "iso_3166-1"    : [ "AU" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "Australia East": {
+            "city"          : "???",
+            "continent"     : "Oceania",
+            "geo_region"    : "Oceania",
+            "iso_3166-1"    : [ "AU" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "Australia Southeast": {
+            "city"          : "???",
+            "continent"     : "Oceania",
+            "geo_region"    : "Oceania",
+            "iso_3166-1"    : [ "AU" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "Brazil South": {
+            "city"          : "???",
+            "continent"     : "South America",
+            "geo_region"    : "America-South",
+            "iso_3166-1"    : [ "BR" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "Canada Central": {
+            "city"          : "???",
+            "continent"     : "North America",
+            "geo_region"    : "America-North",
+            "iso_3166-1"    : [ "CA" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "Canada East": {
+            "city"          : "???",
+            "continent"     : "North America",
+            "geo_region"    : "America-North",
+            "iso_3166-1"    : [ "AU" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+        
+        "Central India": {
+            "city"          : "???",
+            "continent"     : "Asia",
+            "geo_region"    : "Asia-South",
+            "iso_3166-1"    : [ "IN" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "Central US": {
+            "city"          : "Des Moines, Iowa",
+            "continent"     : "North America",
+            "geo_region"    : "America-North",
+            "iso_3166-1"    : [ "US" ],
+            "iso_3166-2"    : [ "US-IA" ]
+        },
+
+        "East Asia": {
+            "city"          : "???",
+            "continent"     : "Asia",
+            "geo_region"    : "Asia-East",
+            "iso_3166-1"    : [ "TW" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "East US": {
+            "city"          : "???",
+            "continent"     : "North America",
+            "geo_region"    : "America-North",
+            "iso_3166-1"    : [ "US" ],
+            "iso_3166-2"    : [ "VA" ]
+        },
+
+        "East US 2": {
+            "city"          : "???",
+            "continent"     : "North America",
+            "geo_region"    : "America-North",
+            "iso_3166-1"    : [ "US" ],
+            "iso_3166-2"    : [ "VA" ]
+        },
+
+        "France Central": {
+            "city"          : "Paris",
+            "continent"     : "Europe",
+            "geo_region"    : "Europe",
+            "iso_3166-1"    : [ "FR" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "France South": {
+            "city"          : "Marseille",
+            "continent"     : "Europe",
+            "geo_region"    : "Europe",
+            "iso_3166-1"    : [ "FR" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "Germany North": {
+            "city"          : "???",
+            "continent"     : "Europe",
+            "geo_region"    : "Europe",
+            "iso_3166-1"    : [ "DE" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "Germany West Central": {
+            "city"          : "???",
+            "continent"     : "Europe",
+            "geo_region"    : "Europe",
+            "iso_3166-1"    : [ "DE" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "Japan East": {
+            "city"          : "???",
+            "continent"     : "Asia",
+            "geo_region"    : "Asia-Northeast",
+            "iso_3166-1"    : [ "JP" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
+        "Japan West": {
+            "city"          : "???",
+            "continent"     : "Asia",
+            "geo_region"    : "Asia-Northeast",
+            "iso_3166-1"    : [ "JP" ],
+            "iso_3166-2"    : [ "???" ]
+        }
+
+
+
     }
 }
