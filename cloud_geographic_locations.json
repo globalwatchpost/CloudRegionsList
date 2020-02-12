@@ -395,6 +395,14 @@
             "iso_3166-2"    : [ "???" ]
         },
 
+        "Germany Central": {
+            "city"          : "Frankfurt",
+            "continent"     : "Europe",
+            "geo_region"    : "Europe",
+            "iso_3166-1"    : [ "DE" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
         "Germany North": {
             "city"          : "Berlin",
             "continent"     : "Europe",
@@ -402,6 +410,15 @@
             "iso_3166-1"    : [ "DE" ],
             "iso_3166-2"    : [ "???" ]
         },
+
+        "Germany Northeast": {
+            "city"          : "Magdeburg",
+            "continent"     : "Europe",
+            "geo_region"    : "Europe",
+            "iso_3166-1"    : [ "DE" ],
+            "iso_3166-2"    : [ "???" ]
+        },
+
 
         "Germany West Central": {
             "city"          : "Frankfurt",
