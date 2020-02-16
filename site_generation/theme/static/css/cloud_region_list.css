@@ -33,6 +33,10 @@ table#table_cloud_list_header td.provider_selected {
 
 table#table_cloud_list_header td.provider_selected a {
     color: #fca421;
+}
+
+table#table_cloud_list_header a {
+    color: black;
     text-decoration: none;
 }
 
