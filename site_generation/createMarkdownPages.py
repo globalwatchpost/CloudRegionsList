@@ -25,18 +25,18 @@ def _main():
                             columnName, sortDirection) )
 
                         if sortDirection == "asc":
-                            columnLinkMetadata.append( "Column_link_{0}: {1}/{2}/desc.html".format(
+                            columnLinkMetadata.append( "Column_link_{0}: /{1}/{2}/desc.html".format(
                                 columnName,
                                 "-".join(currProviderCombo).replace( " ", "_" ),
                                 sortFieldMap[ columnName ][ 'url' ]) )
                         else:
-                            columnLinkMetadata.append( "Column_link_{0}: {1}/{2}/asc.html".format(
+                            columnLinkMetadata.append( "Column_link_{0}: /{1}/{2}/asc.html".format(
                                 columnName,
                                 "-".join(currProviderCombo).replace( " ", "_" ),
                                 sortFieldMap[ columnName ][ 'url' ]) )
                     else:
                         columnImageMetadata.append( "Column_image_{0}: sort_icon_none.svg".format(columnName) )
-                        columnLinkMetadata.append( "Column_link_{0}: {1}/{2}/asc.html".format(
+                        columnLinkMetadata.append( "Column_link_{0}: /{1}/{2}/asc.html".format(
                             columnName,
                             "-".join(currProviderCombo).replace( " ", "_" ),
                             sortFieldMap[ columnName ][ 'url' ]) )
