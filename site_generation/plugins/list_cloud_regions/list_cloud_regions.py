@@ -9,6 +9,7 @@ import pycountry
 import datetime
 import cloudprovider_aws
 import cloudprovider_azure
+import cloudprovider_google
 import itertools
 import copy
 
@@ -33,7 +34,7 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
         self._providerObjects = {
             'AWS'           : cloudprovider_aws.CloudProviderAws( regionInfo['AWS'], formatDate),
             'Azure'         : cloudprovider_azure.CloudProviderAzure( regionInfo['Azure'], formatDate),
-            #'Google Cloud' : None
+            'Google_Cloud'  : cloudprovider_google.CloudProviderGoogle( regionInfo[ 'Google_Cloud' ], formatDate ),
         }
 
         self._populateProviderRegionContext()
@@ -145,15 +146,16 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
                             masterListEntry )
 
 
-                    #print( "Master sorted list: {0}, entries:\n{1}".format(
-                    #    masterSortedListKey, json.dumps(
-                    #        self.context['cloud_providers']['sorted_display_lists'][ masterSortedListKey ],
-                    #        indent=4, sort_keys=True)) )
+                    print( "Master sorted list: {0}, entries:\n{1}".format(
+                        masterSortedListKey, json.dumps(
+                            self.context['cloud_providers']['sorted_display_lists'][ masterSortedListKey ],
+                            indent=4, sort_keys=True)) )
+
 
 
     def _getSortFields(self):
         return (
-            'cloud_region',
+            'cloud_provider',
             'geo_region',
             'continent',
             'display_countries',
@@ -168,10 +170,12 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
                 sortValue = "???"
             else:
                 sortValue = ', '.join( regionObject[ sortField ] )
-        elif sortField == 'cloud_region':
-            sortValue = providerRegionId
+
+        elif sortField == "cloud_provider":
+            sortValue = "{0}:{1}".format(provider, providerRegionId)
+
         else:
-            sortValue = regionObject[ sortField ]
+            sortValue = regionObject[sortField]
 
         return "sort_field:{0}:sort_value:{1}:provider:{2}:region:{3}".format(
             sortField, sortValue, provider, providerRegionId).lower()

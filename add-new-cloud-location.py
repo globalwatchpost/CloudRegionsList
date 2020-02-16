@@ -57,7 +57,7 @@ def _appendOrCreateJson(args, logger):
 def _getArguments(logger):
     argParser = argparse.ArgumentParser(description="Add new cloud region")
     argParser.add_argument("location_json_file", help="Filename of JSON file to create/add locations to" )
-    argParser.add_argument("cloud_provider", choices=[ "aws", "azure", "google" ] )
+    argParser.add_argument("cloud_provider", choices=[ "AWS", "Azure", "Google_Cloud" ] )
     argParser.add_argument( "provider_cloud_region_name", help='Provider region string, e.g., "me-south-1"' )
     argParser.add_argument( "continent",
         choices=[
@@ -74,16 +74,16 @@ def _getArguments(logger):
     argParser.add_argument(
         "geo_region", 
         choices=[ 
-            "america-north",
-            "america-south",
-            "europe",
-            "africa",
-            "middle_east",
-            "asia-south",
-            "asia-southeast",
-            "asia-northeast",
-            "asia-east",
-            "oceania",
+            "America-North",
+            "America-South",
+            "Europe",
+            "Africa",
+            "Middle_East",
+            "Asia-South",
+            "Asia-Southeast",
+            "Asia-Northeast",
+            "Asia-East",
+            "Oceania",
         ],
     ),
     argParser.add_argument( "country_code_list",        help='ISO 3166-1 alpha 2 code list, e.g. "[ \"KE\" ]"' )

@@ -148,7 +148,6 @@
                 "GB"
             ],
             "iso_3166-2": []
-
         },
         "eu-west-3": {
             "city": "Paris",
@@ -160,7 +159,6 @@
             "iso_3166-2": [
                 "FR-IDF"
             ]
-
         },
         "me-south-1": {
             "city": "Doha",
@@ -249,375 +247,749 @@
             ]
         }
     },
-
     "Azure": {
         "Australia Central": {
-            "city"          : "Canberra",
-            "continent"     : "Oceania",
-            "geo_region"    : "Oceania",
-            "iso_3166-1"    : [ "AU" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Canberra",
+            "continent": "Oceania",
+            "geo_region": "Oceania",
+            "iso_3166-1": [
+                "AU"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Australia Central 2": {
-            "city"          : "Canberra",
-            "continent"     : "Oceania",
-            "geo_region"    : "Oceania",
-            "iso_3166-1"    : [ "AU" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Canberra",
+            "continent": "Oceania",
+            "geo_region": "Oceania",
+            "iso_3166-1": [
+                "AU"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Australia East": {
-            "city"          : "???, New South Wales",
-            "continent"     : "Oceania",
-            "geo_region"    : "Oceania",
-            "iso_3166-1"    : [ "AU" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "???, New South Wales",
+            "continent": "Oceania",
+            "geo_region": "Oceania",
+            "iso_3166-1": [
+                "AU"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Australia Southeast": {
-            "city"          : "Victoria",
-            "continent"     : "Oceania",
-            "geo_region"    : "Oceania",
-            "iso_3166-1"    : [ "AU" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Victoria",
+            "continent": "Oceania",
+            "geo_region": "Oceania",
+            "iso_3166-1": [
+                "AU"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Brazil South": {
-            "city"          : "???, Sao Paulo State",
-            "continent"     : "South America",
-            "geo_region"    : "America-South",
-            "iso_3166-1"    : [ "BR" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "???, Sao Paulo State",
+            "continent": "South America",
+            "geo_region": "America-South",
+            "iso_3166-1": [
+                "BR"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Canada Central": {
-            "city"          : "Toronto",
-            "continent"     : "North America",
-            "geo_region"    : "America-North",
-            "iso_3166-1"    : [ "CA" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Toronto",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "CA"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Canada East": {
-            "city"          : "Quebec City",
-            "continent"     : "North America",
-            "geo_region"    : "America-North",
-            "iso_3166-1"    : [ "CA" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Quebec City",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "CA"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-        
         "Central India": {
-            "city"          : "Pune",
-            "continent"     : "Asia",
-            "geo_region"    : "Asia-South",
-            "iso_3166-1"    : [ "IN" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Pune",
+            "continent": "Asia",
+            "geo_region": "Asia-South",
+            "iso_3166-1": [
+                "IN"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Central US": {
-            "city"          : "Des Moines, Iowa",
-            "continent"     : "North America",
-            "geo_region"    : "America-North",
-            "iso_3166-1"    : [ "US" ],
-            "iso_3166-2"    : [ "US-IA" ]
+            "city": "Des Moines, Iowa",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "US-IA"
+            ]
         },
-
         "China East": {
-            "city"          : "Shanghai",
-            "continent"     : "Asia",
-            "geo_region"    : "China",
-            "iso_3166-1"    : [ "CN" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Shanghai",
+            "continent": "Asia",
+            "geo_region": "China",
+            "iso_3166-1": [
+                "CN"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "China East 2": {
-            "city"          : "Shanghai",
-            "continent"     : "Asia",
-            "geo_region"    : "China",
-            "iso_3166-1"    : [ "CN" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Shanghai",
+            "continent": "Asia",
+            "geo_region": "China",
+            "iso_3166-1": [
+                "CN"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "China North": {
-            "city"          : "Beijing",
-            "continent"     : "Asia",
-            "geo_region"    : "China",
-            "iso_3166-1"    : [ "CN" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Beijing",
+            "continent": "Asia",
+            "geo_region": "China",
+            "iso_3166-1": [
+                "CN"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "China North 2": {
-            "city"          : "Beijing",
-            "continent"     : "Asia",
-            "geo_region"    : "China",
-            "iso_3166-1"    : [ "CN" ],
-            "iso_3166-2"    : [ "CN-BJ" ]
+            "city": "Beijing",
+            "continent": "Asia",
+            "geo_region": "China",
+            "iso_3166-1": [
+                "CN"
+            ],
+            "iso_3166-2": [
+                "CN-BJ"
+            ]
         },
-
         "East Asia": {
-            "city"          : "Hong Kong",
-            "continent"     : "Asia",
-            "geo_region"    : "Asia-East",
-            "iso_3166-1"    : [ "CN", "HK" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Hong Kong",
+            "continent": "Asia",
+            "geo_region": "Asia-East",
+            "iso_3166-1": [
+                "CN",
+                "HK"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "East US": {
-            "city"          : "???, Virginia",
-            "continent"     : "North America",
-            "geo_region"    : "America-North",
-            "iso_3166-1"    : [ "US" ],
-            "iso_3166-2"    : [ "VA" ]
+            "city": "???, Virginia",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "VA"
+            ]
         },
-
         "East US 2": {
-            "city"          : "???, Virginia",
-            "continent"     : "North America",
-            "geo_region"    : "America-North",
-            "iso_3166-1"    : [ "US" ],
-            "iso_3166-2"    : [ "VA" ]
+            "city": "???, Virginia",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "VA"
+            ]
         },
-
         "France Central": {
-            "city"          : "Paris",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "FR" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Paris",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "FR"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "France South": {
-            "city"          : "Marseille",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "FR" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Marseille",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "FR"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Germany Central": {
-            "city"          : "Frankfurt",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "DE" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Frankfurt",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "DE"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Germany North": {
-            "city"          : "Berlin",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "DE" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Berlin",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "DE"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Germany Northeast": {
-            "city"          : "Magdeburg",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "DE" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Magdeburg",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "DE"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
-
         "Germany West Central": {
-            "city"          : "Frankfurt",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "DE" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Frankfurt",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "DE"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Japan East": {
-            "city"          : "Tokyo",
-            "continent"     : "Asia",
-            "geo_region"    : "Asia-Northeast",
-            "iso_3166-1"    : [ "JP" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Tokyo",
+            "continent": "Asia",
+            "geo_region": "Asia-Northeast",
+            "iso_3166-1": [
+                "JP"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Japan West": {
-            "city"          : "Osaka",
-            "continent"     : "Asia",
-            "geo_region"    : "Asia-Northeast",
-            "iso_3166-1"    : [ "JP" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Osaka",
+            "continent": "Asia",
+            "geo_region": "Asia-Northeast",
+            "iso_3166-1": [
+                "JP"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Korea Central": {
-            "city"          : "Seoul",
-            "continent"     : "Asia",
-            "geo_region"    : "Asia-Northeast",
-            "iso_3166-1"    : [ "KR" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Seoul",
+            "continent": "Asia",
+            "geo_region": "Asia-Northeast",
+            "iso_3166-1": [
+                "KR"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Korea South": {
-            "city"          : "Busan",
-            "continent"     : "Asia",
-            "geo_region"    : "Asia-Northeast",
-            "iso_3166-1"    : [ "KR" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Busan",
+            "continent": "Asia",
+            "geo_region": "Asia-Northeast",
+            "iso_3166-1": [
+                "KR"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "North Central US": {
-            "city"          : "Chicago, Illinois",
-            "continent"     : "North America",
-            "geo_region"    : "America-North",
-            "iso_3166-1"    : [ "US" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Chicago, Illinois",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "North Europe": {
-            "city"          : "???",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "IE" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "???",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "IE"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Norway East": {
-            "city"          : "Oslo",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "NO" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Oslo",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "NO"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Norway West": {
-            "city"          : "Stavanger",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "NO" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Stavanger",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "NO"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "South Africa North": {
-            "city"          : "Johannesburg",
-            "continent"     : "Africa",
-            "geo_region"    : "Africa",
-            "iso_3166-1"    : [ "ZA" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Johannesburg",
+            "continent": "Africa",
+            "geo_region": "Africa",
+            "iso_3166-1": [
+                "ZA"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "South Africa West": {
-            "city"          : "Cape Town",
-            "continent"     : "Africa",
-            "geo_region"    : "Africa",
-            "iso_3166-1"    : [ "ZA" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Cape Town",
+            "continent": "Africa",
+            "geo_region": "Africa",
+            "iso_3166-1": [
+                "ZA"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "South Central US": {
-            "city"          : "???, Texas",
-            "continent"     : "North America",
-            "geo_region"    : "America-North",
-            "iso_3166-1"    : [ "US" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "???, Texas",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "South India": {
-            "city"          : "Chennai",
-            "continent"     : "Asia",
-            "geo_region"    : "Asia-South",
-            "iso_3166-1"    : [ "IN" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Chennai",
+            "continent": "Asia",
+            "geo_region": "Asia-South",
+            "iso_3166-1": [
+                "IN"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Southeast Asia": {
-            "city"          : "Singapore",
-            "continent"     : "Asia",
-            "geo_region"    : "Asia-Southeast",
-            "iso_3166-1"    : [ "SG" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Singapore",
+            "continent": "Asia",
+            "geo_region": "Asia-Southeast",
+            "iso_3166-1": [
+                "SG"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "Switzerland North": {
-            "city"          : "Zurich",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "CH" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Zurich",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "CH"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-        
         "Switzerland West": {
-            "city"          : "Geneva",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "CH" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Geneva",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "CH"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "UAE Central": {
-            "city"          : "Abu Dhabi",
-            "continent"     : "Asia",
-            "geo_region"    : "Middle East",
-            "iso_3166-1"    : [ "AE" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Abu Dhabi",
+            "continent": "Asia",
+            "geo_region": "Middle East",
+            "iso_3166-1": [
+                "AE"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "UAE North": {
-            "city"          : "Dubai",
-            "continent"     : "Asia",
-            "geo_region"    : "Middle East",
-            "iso_3166-1"    : [ "AE" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Dubai",
+            "continent": "Asia",
+            "geo_region": "Middle East",
+            "iso_3166-1": [
+                "AE"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "UK South": {
-            "city"          : "London",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "GB", "UK" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "London",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "GB",
+                "UK"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "UK West": {
-            "city"          : "Cardiff",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "GB", "UK" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Cardiff",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "GB",
+                "UK"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "West Central US": {
-            "city"          : "Cheyenne, Wyoming",
-            "continent"     : "North America",
-            "geo_region"    : "America-North",
-            "iso_3166-1"    : [ "US" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Cheyenne, Wyoming",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "West Europe": {
-            "city"          : "???",
-            "continent"     : "Europe",
-            "geo_region"    : "Europe",
-            "iso_3166-1"    : [ "NL" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "???",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "NL"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "West India": {
-            "city"          : "Mumbai",
-            "continent"     : "Asia",
-            "geo_region"    : "Asia-South",
-            "iso_3166-1"    : [ "IN" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "Mumbai",
+            "continent": "Asia",
+            "geo_region": "Asia-South",
+            "iso_3166-1": [
+                "IN"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "West US": {
-            "city"          : "???, California",
-            "continent"     : "North America",
-            "geo_region"    : "America-North",
-            "iso_3166-1"    : [ "US" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "???, California",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
         },
-
         "West US 2": {
-            "city"          : "???, Washington",
-            "continent"     : "North America",
-            "geo_region"    : "America-North",
-            "iso_3166-1"    : [ "US" ],
-            "iso_3166-2"    : [ "???" ]
+            "city": "???, Washington",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        }
+    },
+    "Google_Cloud": {
+        "asia-east1": {
+            "city": "???",
+            "continent": "Asia",
+            "geo_region": "Asia-East",
+            "iso_3166-1": [
+                "TW"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "asia-east2": {
+            "city": "Hong Kong",
+            "continent": "Asia",
+            "geo_region": "Asia-East",
+            "iso_3166-1": [
+                "HK",
+                "CN"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "asia-northeast1": {
+            "city": "Tokyo",
+            "continent": "Asia",
+            "geo_region": "Asia-Northeast",
+            "iso_3166-1": [
+                "JP"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "asia-northeast2": {
+            "city": "Osaka",
+            "continent": "Asia",
+            "geo_region": "Asia-Northeast",
+            "iso_3166-1": [
+                "JP"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "asia-south1": {
+            "city": "Mumbai",
+            "continent": "Asia",
+            "geo_region": "Middle_East",
+            "iso_3166-1": [
+                "IN"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "asia-southeast1": {
+            "city": "Singapore",
+            "continent": "Asia",
+            "geo_region": "Asia-Southeast",
+            "iso_3166-1": [
+                "SG"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "australia-northeast3": {
+            "city": "Seoul",
+            "continent": "Asia",
+            "geo_region": "Asia-Southeast",
+            "iso_3166-1": [
+                "KR"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "australia-southeast1": {
+            "city": "Sydney",
+            "continent": "Australia",
+            "geo_region": "Oceania",
+            "iso_3166-1": [
+                "AU"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "europe-north1": {
+            "city": "???",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "FI"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "europe-west1": {
+            "city": "???",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "BE"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "europe-west2": {
+            "city": "London",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "GB"
+            ],
+            "iso_3166-2": [
+                "GB-EN"
+            ]
+        },
+        "europe-west3": {
+            "city": "Frankfurt",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "DE"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "europe-west4": {
+            "city": "???",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "NL"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "europe-west6": {
+            "city": "Zurich",
+            "continent": "Europe",
+            "geo_region": "Europe",
+            "iso_3166-1": [
+                "CH"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "northamerica-northeast1": {
+            "city": "???",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "CA"
+            ],
+            "iso_3166-2": [
+                "CA-QC"
+            ]
+        },
+        "southamerica-east1": {
+            "city": "Sao Paulo",
+            "continent": "South America",
+            "geo_region": "America-South",
+            "iso_3166-1": [
+                "BR"
+            ],
+            "iso_3166-2": [
+                "???"
+            ]
+        },
+        "us-central1": {
+            "city": "???",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "US-IA"
+            ]
+        },
+        "us-east1": {
+            "city": "???",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "US-SC"
+            ]
+        },
+        "us-east4": {
+            "city": "???",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "US-VA"
+            ]
+        },
+        "us-west1": {
+            "city": "The Dalles, Oregon",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "US-OR"
+            ]
+        },
+        "us-west2": {
+            "city": "Los Angeles",
+            "continent": "North America",
+            "geo_region": "America-North",
+            "iso_3166-1": [
+                "US"
+            ],
+            "iso_3166-2": [
+                "US-CA"
+            ]
         }
     }
 }

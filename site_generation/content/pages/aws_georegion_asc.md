@@ -1,6 +1,6 @@
-Title: AWS Geo Region Ascending
-Date: 2020-01-26 18:35:00
-Modified: 2020-01-26 18:35:00
-url: AWS/geo_region/asc.html
+Title: AWS - Geo Regions Asc
+Date: 2020-02-16 13:49:16
+Modified: 2020-02-16 13:49:16
 Save_as: AWS/geo_region/asc.html
+url: AWS/geo_region/asc.html
 Template: cloud-list-template

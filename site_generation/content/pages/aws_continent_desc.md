@@ -1,6 +1,6 @@
-Title: AWS Continent Descending
-Date: 2020-01-26 18:35:00
-Modified: 2020-01-26 18:35:00
-url: AWS/continent/desc.html
+Title: AWS - Continents Desc
+Date: 2020-02-16 13:49:16
+Modified: 2020-02-16 13:49:16
 Save_as: AWS/continent/desc.html
+url: AWS/continent/desc.html
 Template: cloud-list-template
