@@ -1,0 +1,66 @@
+* {
+    /*font-family: "Roboto", "Open Sans";*/
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin-left: 0.5in;
+}
+
+h1 {
+    margin-top: 0.5in;
+    margin-left: 0.5in;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table#table_metadata {
+    margin-left: 1.0in;
+}
+
+table#table_metadata td.metadata_header {
+    text-align: right;
+    padding-right: 0.1in;
+    vertical-align: top;
+}
+
+span.text_header {
+    font-weight: bold;
+}
+
+table#table_regions {
+    margin-left: 1.0in;
+    margin-top: 0.5in;
+    border: 1px solid black;
+}
+
+table#table_regions td { 
+    padding: 2px 25px 2px 25px;
+    text-align: center;
+    /*font-size: small;*/
+}
+
+table#table_regions td.header {
+    background: #505050;
+    color: white;
+    font-weight: bold;
+    font-size: medium;
+    padding: 5px 25px 5px 25px;
+    vertical-align: middle;
+}
+
+a.region_header_link {
+    color: white;
+    text-decoration: none;
+}
+
+table#table_regions tr:nth-child(2n+1) {
+    background: #d0d0d0;
+}
+
+span.text_header {
+    font-weight: bold;
+}
+

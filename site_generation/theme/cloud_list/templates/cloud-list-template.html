@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+    <head>
+        <title>Cloud Regions List</title>        
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/cloud_region_list.css">
+    </head>
+
+    <body>
+        {% include "cloud-list-header.html" %} 
+
+        <h1>Cloud Regions List</h1>
+
+            <table id="table_metadata">
+                <tr>
+                    <td class="metadata_header"><span class="text_header">List generated</span>:</td> 
+                    <td>{{ cloud_providers['generation_timestamp'] }} 
+                        <a href="https://www.timeanddate.com/time/aboututc.html">UTC</a></td>
+                </tr>
+
+                {% for dataSource in cloud_providers['data_sources'] %}
+                <tr>
+                    {% if loop.first %}
+                        <td class="metadata_header" rowspan="{{ loop.length }}"><span class="text_header">Data sources</span>:</td>
+                    {% endif %}
+                    <td>{{ dataSource['description'] }}, updated {{ dataSource['updated_timestamp'] }}</td>
+                </tr>
+                {% endfor %} 
+            </table>
+
+            {% set displayListKey = page.url[:-5] %}
+
+            <table id="table_regions">
+                <tr>
+                    <td class="header">
+                        <a class="region_header_link" href="{{page.column_link_cloudprovider}}">
+                        Cloud Provider
+                        <img width="10px;" src="/theme/images/icons/{{page.column_image_cloudprovider}}"/>
+                        </a>
+                    </td>
+                    <td class="header">Region Name</td>
+                    <td class="header">
+                        <a class="region_header_link" href="{{page.column_link_georegion}}">
+                        Geo Region
+                        <img width="10px;" src="/theme/images/icons/{{page.column_image_georegion}}"/>
+                        </a>
+                    </td> 
+                    <td class="header">
+                        <a class="region_header_link" href="{{page.column_link_country}}">
+                        Country
+                        <img width="10px;" src="/theme/images/icons/{{page.column_image_country}}"/>
+                        </a>
+                    </td> 
+                    <td class="header">City</td>
+                </tr>
+
+                {% for currTableEntry in cloud_providers['sorted_display_lists'][ displayListKey ] %}
+                    </tr>
+                        <td>{{ currTableEntry[ 'cloud_provider'] | replace( "_", " ") }}</td>
+                        <td>{{ currTableEntry[ 'cloud_region' ]}}</td> 
+                        <td>{{ currTableEntry['geo_region'] | replace( "_", " ") }}</td> 
+                        <td>{{ currTableEntry['display_countries'] | join(', ') }}</td>
+                        <td>{{ currTableEntry['city'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+    </body>
+</html>
