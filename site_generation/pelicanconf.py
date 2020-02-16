@@ -37,4 +37,4 @@ DEFAULT_PAGINATION = False
 PLUGINS = [ 'list_cloud_regions', ]
 PLUGIN_PATHS = [ 'plugins', ]
 
-THEME = "cloud_list"
+THEME = "./theme"
