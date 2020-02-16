@@ -153,6 +153,9 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
 
 
 
+
+
+
     def _getSortFields(self):
         return (
             'cloud_provider',
