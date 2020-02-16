@@ -146,10 +146,10 @@ class ListCloudRegions(pelican.generators.PagesGenerator):
                             masterListEntry )
 
 
-                    print( "Master sorted list: {0}, entries:\n{1}".format(
-                        masterSortedListKey, json.dumps(
-                            self.context['cloud_providers']['sorted_display_lists'][ masterSortedListKey ],
-                            indent=4, sort_keys=True)) )
+                    #print( "Master sorted list: {0}, entries:\n{1}".format(
+                    #    masterSortedListKey, json.dumps(
+                    #        self.context['cloud_providers']['sorted_display_lists'][ masterSortedListKey ],
+                    #        indent=4, sort_keys=True)) )
 
 
 
