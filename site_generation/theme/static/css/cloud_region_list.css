@@ -16,6 +16,26 @@ table {
     border-collapse: collapse;
 }
 
+table#table_cloud_list_header {
+    border-collapse: separate;
+    border-spacing: 0.15in;
+}
+
+table#table_cloud_list_header td {
+    padding: 10px; 
+}
+
+table#table_cloud_list_header td.provider_selected {
+    background-color: black;
+    color: #fca421;
+    font-weight: bold;
+}
+
+table#table_cloud_list_header td.provider_selected a {
+    color: #fca421;
+    text-decoration: none;
+}
+
 table#table_metadata {
     margin-left: 1.0in;
 }

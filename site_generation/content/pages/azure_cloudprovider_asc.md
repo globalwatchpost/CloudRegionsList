@@ -1,6 +1,6 @@
 Title: Azure - Cloud Providers Asc
-Date: 2020-02-16 15:49:14
-Modified: 2020-02-16 15:49:14
+Date: 2020-02-16 18:27:48
+Modified: 2020-02-16 18:27:48
 Save_as: Azure/cloud_provider/asc.html
 url: Azure/cloud_provider/asc.html
 Template: cloud-list-template
@@ -12,3 +12,7 @@ Column_link_cloudprovider: /Azure/cloud_provider/desc.html
 Column_link_georegion: /Azure/geo_region/asc.html
 Column_link_continent: /Azure/continent/asc.html
 Column_link_country: /Azure/display_countries/asc.html
+Provider_class_Azure: class="provider_selected"
+Provider_link_AWS: /AWS-Azure/cloud_provider/asc.html
+Provider_link_Azure: /Azure/cloud_provider/asc.html
+Provider_link_Google_Cloud: /Azure-Google_Cloud/cloud_provider/asc.html

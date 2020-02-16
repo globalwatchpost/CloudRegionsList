@@ -9,10 +9,9 @@ def _main():
 
     sortFieldMap = _getSortFields()
 
-
-
     for currProviderCombo in providerCombinations:
         #print( "Combination: {0}".format( ",".join(currProviderCombo)) )
+
         for sortfieldKey in sortFieldMap:
             for sortDirection in ( 'asc', 'desc' ):
 
@@ -60,6 +59,32 @@ def _main():
 
                 markdownContentArray.extend( columnImageMetadata )
                 markdownContentArray.extend( columnLinkMetadata )
+
+                for providerOption in ( 'AWS', 'Azure', 'Google Cloud' ):
+                    if providerOption in currProviderCombo:
+                        markdownContentArray.append( "Provider_class_{0}: class=\"provider_selected\"".format(
+                            providerOption.replace(" ", "_")) )
+
+                for providerOption in ( 'AWS', 'Azure', 'Google Cloud' ):
+                    providerLinkProviders = []
+                    for innerProvider in ( 'AWS', 'Azure', 'Google Cloud' ):
+                        if innerProvider != providerOption:
+                            if innerProvider in currProviderCombo:
+                                providerLinkProviders.append( innerProvider )
+                        else:
+                            # FLIP current provider if-and-only-if we're not the last one in the list, then ignore
+                            if innerProvider not in currProviderCombo:
+                                providerLinkProviders.append( innerProvider )
+                            elif len(currProviderCombo) == 1:
+                                providerLinkProviders.append( innerProvider )
+
+
+                    markdownContentArray.append( "Provider_link_{0}: {1}".format(
+                         providerOption.replace( " ", "_"),
+                         "/{0}/{1}/{2}.html".format(
+                            "-".join(providerLinkProviders).replace( " ", "_" ),
+                            sortFieldMap[ sortfieldKey ][ 'url' ],
+                            sortDirection)) ) 
 
                 markdownContentString = "\n".join( markdownContentArray )
 

@@ -1,6 +1,6 @@
 Title: AWS - Cloud Providers Desc
-Date: 2020-02-16 15:49:14
-Modified: 2020-02-16 15:49:14
+Date: 2020-02-16 18:27:48
+Modified: 2020-02-16 18:27:48
 Save_as: AWS/cloud_provider/desc.html
 url: AWS/cloud_provider/desc.html
 Template: cloud-list-template
@@ -12,3 +12,7 @@ Column_link_cloudprovider: /AWS/cloud_provider/asc.html
 Column_link_georegion: /AWS/geo_region/asc.html
 Column_link_continent: /AWS/continent/asc.html
 Column_link_country: /AWS/display_countries/asc.html
+Provider_class_AWS: class="provider_selected"
+Provider_link_AWS: /AWS/cloud_provider/desc.html
+Provider_link_Azure: /AWS-Azure/cloud_provider/desc.html
+Provider_link_Google_Cloud: /AWS-Google_Cloud/cloud_provider/desc.html

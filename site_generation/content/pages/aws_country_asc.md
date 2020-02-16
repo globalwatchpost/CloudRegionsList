@@ -1,6 +1,6 @@
 Title: AWS - Countries Asc
-Date: 2020-02-16 15:49:14
-Modified: 2020-02-16 15:49:14
+Date: 2020-02-16 18:27:48
+Modified: 2020-02-16 18:27:48
 Save_as: AWS/display_countries/asc.html
 url: AWS/display_countries/asc.html
 Template: cloud-list-template
@@ -12,3 +12,7 @@ Column_link_cloudprovider: /AWS/cloud_provider/asc.html
 Column_link_georegion: /AWS/geo_region/asc.html
 Column_link_continent: /AWS/continent/asc.html
 Column_link_country: /AWS/display_countries/desc.html
+Provider_class_AWS: class="provider_selected"
+Provider_link_AWS: /AWS/display_countries/asc.html
+Provider_link_Azure: /AWS-Azure/display_countries/asc.html
+Provider_link_Google_Cloud: /AWS-Google_Cloud/display_countries/asc.html
