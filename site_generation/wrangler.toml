@@ -1,0 +1,8 @@
+name = "cloud-region-list"
+type = "webpack"
+account_id = "fbc458c06302e664b979b544b5809a1c"
+workers_dev = true
+
+[site]
+bucket = "./output"
+entry-point = "workers-site"
