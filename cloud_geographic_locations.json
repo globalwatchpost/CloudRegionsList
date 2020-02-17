@@ -807,7 +807,7 @@
         "asia-south1": {
             "city": "Mumbai",
             "continent": "Asia",
-            "geo_region": "Middle_East",
+            "geo_region": "Asia-South",
             "iso_3166-1": [
                 "IN"
             ],
@@ -829,7 +829,7 @@
         "australia-northeast3": {
             "city": "Seoul",
             "continent": "Asia",
-            "geo_region": "Asia-Southeast",
+            "geo_region": "Asia-Northeast",
             "iso_3166-1": [
                 "KR"
             ],

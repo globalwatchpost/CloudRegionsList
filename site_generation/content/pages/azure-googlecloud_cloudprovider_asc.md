@@ -1,6 +1,6 @@
 Title: Azure+Google Cloud - Cloud Providers Asc
-Date: 2020-02-16 18:27:48
-Modified: 2020-02-16 18:27:48
+Date: 2020-02-16 18:43:30
+Modified: 2020-02-16 18:43:30
 Save_as: Azure-Google_Cloud/cloud_provider/asc.html
 url: Azure-Google_Cloud/cloud_provider/asc.html
 Template: cloud-list-template
