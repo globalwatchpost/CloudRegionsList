@@ -60,6 +60,7 @@ table#table_regions {
     margin-left: 1.0in;
     margin-top: 0.25in;
     border: 1px solid black;
+    display: none;
 }
 
 table#table_regions td { 
@@ -90,3 +91,7 @@ span.text_header {
     font-weight: bold;
 }
 
+
+td.td_cloud_provider:hover {
+    cursor: pointer;
+}

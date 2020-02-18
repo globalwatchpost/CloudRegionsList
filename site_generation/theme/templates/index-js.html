@@ -42,14 +42,33 @@ function populateTable()
         regionTr.appendChild( cityTd );
 
         regionTable.appendChild( regionTr );
-
-        // Display region table
     }
+
+    // Now that data is in, display table to avoid so much jitter
+    regionTable.style.display = "table";
+}
+
+
+function highlightSelectedProviders()
+{
+    var providers = [ "aws", "azure", "gcloud" ];
+    for ( var i in providers )
+    {
+        var currProvider = providers[i];
+        var currProviderTd = document.getElementById("cloud_" + currProvider);
+
+        // Change their class to selected
+        currProviderTd.classList.add( "provider_selected" );
+    }
+
+
 }
 
 function windowLoaded()
 {
     console.log("Window loaded!");
+
+    highlightSelectedProviders();
 
     populateTable();
 }
