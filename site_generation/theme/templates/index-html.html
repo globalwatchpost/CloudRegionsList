@@ -8,8 +8,6 @@
     </head>
 
     <body>
-        {% include "cloud-list-header.html" %} 
-
         <h1>Cloud Regions List</h1>
 
             <table id="table_metadata">
@@ -26,44 +24,43 @@
                     {% endif %}
                     <td>{{ dataSource['description'] }}, updated {{ dataSource['updated_timestamp'] }}</td>
                 </tr>
-                {% endfor %} 
+                {% endfor %}
+
+
             </table>
 
-            {% set displayListKey = page.url[:-5] %}
+            <table id="table_cloud_list_header">
+                <tr>
+                    <td><strong>Clouds</strong>:</td>
+                    <td id="cloud_aws">AWS</td>
+                    <td id="cloud_azure">Azure</td>
+                    <td id="cloud_gcloud">Google Cloud</td>
+                </tr>
+            </table>
+
 
             <table id="table_regions">
                 <tr>
                     <td class="header">
                         <a class="region_header_link" href="{{page.column_link_cloudprovider}}">
                         Cloud Provider
-                        <img width="10px;" src="/theme/images/{{page.column_image_cloudprovider}}"/>
                         </a>
                     </td>
                     <td class="header">Region Name</td>
                     <td class="header">
                         <a class="region_header_link" href="{{page.column_link_georegion}}">
                         Geo Region
-                        <img width="10px;" src="/theme/images/{{page.column_image_georegion}}"/>
                         </a>
                     </td> 
                     <td class="header">
                         <a class="region_header_link" href="{{page.column_link_country}}">
                         Country
-                        <img width="10px;" src="/theme/images/{{page.column_image_country}}"/>
                         </a>
                     </td> 
                     <td class="header">City</td>
                 </tr>
 
-                {% for currTableEntry in cloud_providers['sorted_display_lists'][ displayListKey ] %}
-                    </tr>
-                        <td>{{ currTableEntry[ 'cloud_provider'] | replace( "_", " ") }}</td>
-                        <td>{{ currTableEntry[ 'cloud_region' ]}}</td> 
-                        <td>{{ currTableEntry['geo_region'] | replace( "_", " ") }}</td> 
-                        <td>{{ currTableEntry['display_countries'] | join(', ') }}</td>
-                        <td>{{ currTableEntry['city'] }}</td>
-                    </tr>
-                {% endfor %}
             </table>
     </body>
+    <script src="/js/index.js"></script>
 </html>

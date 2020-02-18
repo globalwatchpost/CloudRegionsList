@@ -4,7 +4,7 @@
 }
 
 body {
-    margin-left: 0.5in;
+    /*margin-left: 0.5in;*/
 }
 
 h1 {
@@ -17,6 +17,8 @@ table {
 }
 
 table#table_cloud_list_header {
+    margin-top: 0.25in;
+    margin-left: 1.0in;
     border-collapse: separate;
     border-spacing: 0.15in;
 }
@@ -56,7 +58,7 @@ span.text_header {
 
 table#table_regions {
     margin-left: 1.0in;
-    margin-top: 0.5in;
+    margin-top: 0.25in;
     border: 1px solid black;
 }
 

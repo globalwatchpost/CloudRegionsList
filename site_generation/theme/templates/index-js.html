@@ -1,0 +1,57 @@
+var tableRows = {{ json_table_rows }};
+
+function populateTable()
+{
+    var regionTable = document.getElementById( "table_regions" );
+    for ( var rowIndex in tableRows )
+    {
+        var currRow = tableRows[ rowIndex ];
+
+        //console.log( "Found row: " + JSON.stringify( currRow ) );
+
+        var regionTr = document.createElement("tr");
+
+        // Provider
+        var providerTd = document.createElement("td");
+        var providerText = document.createTextNode( currRow['provider'] );
+        providerTd.appendChild( providerText );
+        regionTr.appendChild( providerTd );
+
+        // Region Name
+        var regionTd = document.createElement("td");
+        var regionText = document.createTextNode( currRow[ 'region_name' ] );
+        regionTd.appendChild( regionText );
+        regionTr.appendChild( regionTd );
+
+        // Geo Region
+        var geoRegionTd = document.createElement("td");
+        var geoRegionText = document.createTextNode( currRow[ 'geo_region' ] );
+        geoRegionTd.appendChild( geoRegionText );
+        regionTr.appendChild( geoRegionTd );
+
+        // Countries
+        var countriesTd = document.createElement("td");
+        var countriesText = document.createTextNode( currRow[ 'display_countries' ].join( ', ') );
+        countriesTd.appendChild( countriesText );
+        regionTr.appendChild( countriesTd );
+
+        // City
+        var cityTd = document.createElement("td");
+        var cityText = document.createTextNode( currRow[ 'city' ] );
+        cityTd.appendChild( cityText );
+        regionTr.appendChild( cityTd );
+
+        regionTable.appendChild( regionTr );
+
+        // Display region table
+    }
+}
+
+function windowLoaded()
+{
+    console.log("Window loaded!");
+
+    populateTable();
+}
+
+window.onload = windowLoaded();
