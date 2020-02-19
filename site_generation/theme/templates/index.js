@@ -64,13 +64,13 @@ function highlightSelectedProviders()
 
 }
 
-function windowLoaded()
-{
-    console.log("Window loaded!");
 
+function main()
+{
     highlightSelectedProviders();
 
     populateTable();
 }
 
-window.onload = windowLoaded();
+
+main();
