@@ -96,7 +96,7 @@ td.td_cloud_provider:hover {
     cursor: pointer;
 }
 
-div.button {
+.button {
     color: #fca421;
     background-color: black;
     border-radius: 15px;
@@ -108,11 +108,17 @@ div.button {
     cursor: pointer;
 }
 
+#cancel_button {
+    background-color: white;
+    border: 1px solid black;
+}
+
 div#filter_button {
     margin-left: 1.0in;
     margin-top: 0.5in;
 }
 
+/* Taken from https://www.cssscript.com/simple-modal-window-with-background-blur-effect/ */
 
 .modal {
   display: block;
@@ -125,18 +131,40 @@ div#filter_button {
   padding-top: 100px;
   background-color: black;
   background-color: rgba(0, 0, 0, 0.4);
-  -webkit-transition: 0.5s;
+  -webkit-transition: 0.2s;
   overflow: auto;
-  transition: all 0.3s linear;
+  transition: all 0.2s linear;
+
+  /*
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 25%;
+  left: 50%;
+  transform: translate( -50%, -50% );
+  z-index: 9999;
+  background-color: black;
+  background-color: rgba( 0, 0, 0, 0.4 );
+  transition: all 0.3s ease-in-out;
+  overflow: auto;
+  */
+
 }
 
 .modal-content {
+  display: block;
+  position: fixed;
+  top: 1.0in;
+  left: 1.5in;
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
-  border-radius: 4px;
-  max-width: 300px;
-  height: 450px;
+  padding: 0.25in;
+  border-radius: 15px;
+  /*max-width: 300px; */
+  /*min-width: 50%;*/
+  /* max-width: 90%;  */
+  /* height: 450px; */
 }
 
 .modalOpen { overflow: hidden; }
@@ -145,19 +173,48 @@ div#filter_button {
 
 .is-visuallyHidden { opacity: 0; }
 
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 16px;
-}
-
-.close:hover, .close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 .is-blurred {
   filter: blur(2px);
   -webkit-filter: blur(2px);
+}
+
+table#table_filters {
+    /*margin-left: 0.25in;*/
+    /*border: 1px solid black;*/
+    border-collapse: separate;
+    border-spacing: 50px 5px;
+}
+
+table#table_filters td.header {
+    background: #505050;
+    color: white;
+    font-weight: bold;
+    font-size: medium;
+    vertical-align: middle;
+    padding: 5px 25px 5px 25px;
+}
+
+table#table_filters td {
+    padding: 2px 25px 2px 25px;
+}
+
+div#modal_buttons {
+    padding-top: 0.5in;
+    margin: auto;
+}
+
+div#myContainer {
+    transition: all 0.2s linear;
+} 
+
+table#table_filters td {
+    transition: all 0.2s ease-in-out;
+}
+
+table#table_filters td.filter_selected {
+    background: black;
+    color: #fca421;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+    border-radius: 10px;
 }

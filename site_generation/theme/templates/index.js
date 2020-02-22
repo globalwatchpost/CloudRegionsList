@@ -1,5 +1,130 @@
 var tableRows = {{ json_table_rows }};
 
+function populateFilterTable()
+{
+    var filters = {
+        'cloud_providers'   : [],
+        'geo_regions'       : [],
+        'countries'         : []
+    }
+
+    for ( var rowIndex in tableRows )
+    {
+        var currRow = tableRows[ rowIndex ];
+      
+        if ( filters[ 'cloud_providers'].includes(currRow[ 'provider' ]) == false )
+        {
+            filters[ 'cloud_providers'].push( currRow['provider'] );
+        }
+
+        if ( filters['geo_regions'].includes(currRow['geo_region']) == false )
+        {
+            filters[ 'geo_regions' ].push( currRow['geo_region'] );
+        }
+
+        var displayCountriesString = currRow['display_countries'].join(', ');
+        if ( filters['countries'].includes(displayCountriesString) == false )
+        {
+            filters[ 'countries' ].push( displayCountriesString );
+        }
+    }
+
+    var filterTableRows = Math.max( 
+        filters['cloud_providers'].length,
+        filters['geo_regions'].length,
+        filters['countries'].length
+    );
+
+    filters['cloud_providers'].sort();
+    filters['geo_regions'].sort();
+    filters['countries'].sort();
+
+    var filterTable = document.getElementById( "table_filters" );
+
+    for ( var i = 0; i < filterTableRows; ++i )
+    {
+        var filterTr = document.createElement("tr");
+
+        // Provider
+        var providerTd = document.createElement("td");
+        if ( i < filters['cloud_providers'].length )
+        {
+            var elementId = "filter.cloud_provider." + filters[ 'cloud_providers' ][ i ];
+            providerTd.id = "td." + elementId;
+
+            var providerText = document.createTextNode( filters[ 'cloud_providers' ][ i ] );
+            providerTd.appendChild( providerText );
+        }
+        filterTr.appendChild( providerTd );
+
+
+        // Geo Region
+        var regionTd = document.createElement("td");
+        if ( i < filters['geo_regions'].length )
+        {
+
+            var elementId = "filter.geo_region." + filters[ 'geo_regions' ][ i ];
+            regionTd.id = "td." + elementId;
+
+            
+            var regionText = document.createTextNode( filters[ 'geo_regions' ][ i ] );
+            regionTd.appendChild( regionText );
+        }
+        filterTr.appendChild( regionTd );
+
+
+        // Country
+        var countryTd = document.createElement("td");
+        if ( i < filters['countries'].length )
+        {
+            var elementId = "filter.country." + filters[ 'countries' ][ i ];
+            countryTd.id = "td." + elementId;
+
+            var countryText = document.createTextNode( filters[ 'countries' ][ i ] );
+            countryTd.appendChild( countryText );
+        }
+        filterTr.appendChild( countryTd );
+
+        filterTable.appendChild( filterTr );    
+    }
+
+    // Mark all elements whose TD id's start with the proper string to be selected,
+    //      also hook them up with an event listener to deal with button clicks
+    var filterTdElements = document.querySelectorAll( 'td[id^="td.filter."]' );
+    for ( var i = 0; i < filterTdElements.length; ++i )
+    {
+        var currTd = filterTdElements[i];
+        
+        // Set initially selected
+        currTd.classList.add( "filter_selected" );
+
+        // Set cursor to pointer
+        currTd.style.cursor = "pointer";
+
+        // Handle callback if we get clicked
+        currTd.addEventListener( "click", createFilterClickedCallback(currTd.id) );
+
+    }
+
+    /*
+    console.log( "Filter table row count: " + filterTableRows );
+
+    console.log("Filter values: " + JSON.stringify(filters) );
+    */
+}
+
+function createFilterClickedCallback( tableDataId )
+{
+    return function() {
+        filterClickedCallback( tableDataId );   
+    };
+}
+
+function filterClickedCallback( tableDataId )
+{
+    console.log( "Filter " + tableDataId + " clicked" );
+}
+
 function populateTable()
 {
     var regionTable = document.getElementById( "table_regions" );
@@ -261,7 +386,6 @@ function catchClickOutsideModal()
 function addEventListeners()
 {
     document.getElementById( "filter_button" ).addEventListener( "click", displayFilterModal );
-    document.getElementById( "closeModal" ).addEventListener( "click", hideFilterModal );
 
     // Handle click outside of modal when it's displayed
     window.addEventListener( "click", catchClickOutsideModal );
@@ -283,8 +407,9 @@ function main()
 
     populateTable();
 
+    populateFilterTable();
+
     addEventListeners();
 }
-
 
 main();

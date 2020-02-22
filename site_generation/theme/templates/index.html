@@ -10,8 +10,20 @@
     <body>
         <div id="div-filter" class="modal is-hidden is-visuallyHidden">
             <div class="modal-content">
-                <span id="closeModal" class="close">Close button</span>
-                <p>Simple Modal</p>
+                <h2>Filter Columns</h2>
+
+                <table id="table_filters">
+                    <tr>
+                        <td class="header">Cloud Providers</td>
+                        <td class="header">Geo Regions</td>
+                        <td class="header">Countries</td>
+                    </tr>
+                </table>
+
+                <div id="modal_buttons">
+                    <span class="button">Apply Filters</span>
+                    <span id="cancel_button" class="button">Cancel</span>
+                </div>
             </div>
         </div>
 
