@@ -49,22 +49,6 @@ function populateTable()
 }
 
 
-function highlightSelectedProviders()
-{
-    var providers = [ "aws", "azure", "gcloud" ];
-    for ( var i in providers )
-    {
-        var currProvider = providers[i];
-        var currProviderTd = document.getElementById("cloud_" + currProvider);
-
-        // Change their class to selected
-        currProviderTd.classList.add( "provider_selected" );
-    }
-
-
-}
-
-
 /**
  * Get the URL parameters
  * source: https://css-tricks.com/snippets/javascript/get-url-variables/
@@ -221,6 +205,68 @@ function getBaseUrl(url)
     }
 }
 
+function displayFilterModal()
+{
+    console.log( "Time to display filter modal" );
+
+    var modal = document.getElementById('div-filter');
+    var container = document.getElementById("myContainer");
+
+    modal.className = "modal is-visuallyHidden";
+    setTimeout(
+        function() {
+            container.className = "mainContainer is-blurred";
+            modal.className = "modal";
+        }, 100
+    );
+    container.parentElement.className = "modalOpen";
+}
+
+function hideFilterModal() 
+{
+    console.log( "Close filter modal button clicked" );
+    var modal = document.getElementById('div-filter');
+    var body = document.getElementsByTagName( "body" );
+    var container = document.getElementById("myContainer");
+
+    modal.className = "modal is-hidden is-visuallyHidden";
+    body.className = "";
+    container.className = "mainContainer";
+    container.parentElement.className = "";
+}
+
+function catchClickOutsideModal() 
+{
+    var modal = document.getElementById('div-filter');
+    var body = document.getElementsByTagName( "body" );
+    var container = document.getElementById("myContainer");
+
+    if ( event.target == modal )
+    {
+        //console.log( "inside clickedOutsideModal, target was outside modal" );
+
+        modal.className = "modal is-hidden";
+        body.className = "";
+        container.className = "mainContainer";
+        container.parentElement.className = "";
+    }
+    /*
+    else
+    {
+        console.log( "inside clickedOutsideModal, target was not modal" );
+    }
+    */
+}
+
+function addEventListeners()
+{
+    document.getElementById( "filter_button" ).addEventListener( "click", displayFilterModal );
+    document.getElementById( "closeModal" ).addEventListener( "click", hideFilterModal );
+
+    // Handle click outside of modal when it's displayed
+    window.addEventListener( "click", catchClickOutsideModal );
+}
+
 
 function main()
 {
@@ -233,9 +279,11 @@ function main()
 
     updateUrlFromState();
 
-    highlightSelectedProviders();
+    //highlightSelectedProviders();
 
     populateTable();
+
+    addEventListeners();
 }
 
 

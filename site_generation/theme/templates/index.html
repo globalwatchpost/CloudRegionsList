@@ -8,6 +8,14 @@
     </head>
 
     <body>
+        <div id="div-filter" class="modal is-hidden is-visuallyHidden">
+            <div class="modal-content">
+                <span id="closeModal" class="close">Close button</span>
+                <p>Simple Modal</p>
+            </div>
+        </div>
+
+        <div id="myContainer">
         <h1>Cloud Regions List</h1>
 
             <table id="table_metadata">
@@ -29,6 +37,7 @@
 
             </table>
 
+            <!--
             <table id="table_cloud_list_header">
                 <tr>
                     <td><strong>Clouds</strong>:</td>
@@ -37,7 +46,9 @@
                     <td id="cloud_gcloud" class="td_cloud_provider">Google Cloud</td>
                 </tr>
             </table>
+            -->
 
+            <div id="filter_button" class="button">Filter Columns</div>
 
             <table id="table_regions">
                 <tr>
@@ -61,6 +72,7 @@
                 </tr>
 
             </table>
+        </div>
     </body>
 
     <script defer>{% include 'index.js' %}</script>
