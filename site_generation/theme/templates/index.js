@@ -123,6 +123,18 @@ function createFilterClickedCallback( tableDataId )
 function filterClickedCallback( tableDataId )
 {
     console.log( "Filter " + tableDataId + " clicked" );
+
+    var filterTd = document.getElementById( tableDataId );
+
+    // Flip selection status
+    if ( filterTd.classList.contains( "filter_selected" ) == true )
+    {
+        filterTd.classList.remove( "filter_selected" );
+    }
+    else
+    {
+        filterTd.classList.add( "filter_selected" );
+    }
 }
 
 function populateTable()
